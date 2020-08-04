@@ -1,271 +1,206 @@
 import 'package:flutter/material.dart';
 
-class NGO extends StatelessWidget {
+class NGO extends StatefulWidget {
+  @override
+  _NGOState createState() => _NGOState();
+}
+
+class _NGOState extends State<NGO> {
+  //global key for the NGO form
+
+  final _formKey = GlobalKey<FormState>();
+
+  //variables for the NGO form
+
+  String registration_deed_no = " ";
+  String name_of_ngo = " ";
+  String founder = " ";
+  String pannumber = " ";
+  String email = " ";
+  String contact = " ";
+  String location = " ";
+  String yearofestablishment = " ";
+
+// function for adding NGO data called from the submit button
+
+  sendData() {
+    print('The data is submitted');
+  }
+
+// function to cancel the data submitted
+
+  cancel() {
+    print('The data is submitted');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("NGO"),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.add,
-              color: Colors.white,
+      backgroundColor: Colors.blue,
+      body: Form(
+        key: _formKey,
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: Card(
+            semanticContainer: true,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
             ),
-            onPressed: null,
-            color: Colors.white,
-          )
-        ],
-      ),
-      body: ListView(
-        children: [
-          Container(
-              height: 350,
-              padding: EdgeInsets.all(5),
-              width: MediaQuery.of(context).size.width,
-              child: Card(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+            elevation: 5,
+            margin: EdgeInsets.all(10),
+            child: Container(
+              margin: EdgeInsets.all(20),
+              child: ListView(
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      'Add details of your NGO',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.red),
+                    ),
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      icon: const Icon(Icons.note),
+                      hintText: 'Enter registration deed number',
+                      labelText: 'Registration Deed No',
+                    ),
+                    validator: (val) => val.isEmpty
+                        ? 'Please enter registration deed number '
+                        : null,
+                    onChanged: (val) {
+                      setState(() => registration_deed_no = (val));
+                    },
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      icon: const Icon(Icons.business),
+                      hintText: 'Enter the name of NGO',
+                      labelText: 'Name of NGO',
+                    ),
+                    validator: (val) =>
+                        val.isEmpty ? 'Enter the name of NGO' : null,
+                    onChanged: (val) {
+                      setState(() => name_of_ngo = (val));
+                    },
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      icon: const Icon(Icons.person),
+                      hintText: 'Enter founder name',
+                      labelText: 'Founder name',
+                    ),
+                    validator: (val) =>
+                        val.isEmpty ? 'Please enter founder name' : null,
+                    onChanged: (val) {
+                      setState(() => founder = (val));
+                    },
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      icon: const Icon(Icons.payment),
+                      hintText: 'Enter your pan number',
+                      labelText: 'Pan number',
+                    ),
+                    validator: (val) =>
+                        val.isEmpty ? 'Please enter your pan number' : null,
+                    onChanged: (val) {
+                      setState(() => pannumber = (val));
+                    },
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      icon: const Icon(Icons.email),
+                      hintText: 'Enter your email id',
+                      labelText: 'Email ID',
+                    ),
+                    validator: (val) =>
+                        val.isEmpty ? 'Enter your email id' : null,
+                    onChanged: (val) {
+                      setState(() => email = (val));
+                    },
+                  ),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      icon: const Icon(Icons.phone),
+                      hintText: 'Enter your phone number',
+                      labelText: 'Phone',
+                    ),
+                    keyboardType: TextInputType.phone,
+                    validator: (val) =>
+                        val.isEmpty ? 'Enter your phone number' : null,
+                    onChanged: (val) {
+                      setState(() => contact = (val));
+                    },
+                  ),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      icon: const Icon(Icons.location_on),
+                      hintText: 'Enter your location',
+                      labelText: 'Location',
+                    ),
+                    keyboardType: TextInputType.datetime,
+                    validator: (val) =>
+                        val.isEmpty ? 'please enter your location' : null,
+                    onChanged: (val) {
+                      setState(() => location = (val));
+                    },
+                  ),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      icon: const Icon(Icons.calendar_today),
+                      hintText: 'Enter your year of establishment',
+                      labelText: 'Establishment date',
+                    ),
+                    keyboardType: TextInputType.datetime,
+                    validator: (val) => val.isEmpty
+                        ? 'please enter your year of establishment'
+                        : null,
+                    onChanged: (val) {
+                      setState(() => yearofestablishment = (val));
+                    },
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          margin: EdgeInsets.all(5),
-                          height: 80,
-                          child: Image.asset("assets/images/ngo.png"),
+                      children: <Widget>[
+                        new Container(
+                          child: new RaisedButton(
+                            color: Colors.red,
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onPressed: () {
+                              //code to call the function to cancel
+                            },
+                          ),
                         ),
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          margin: EdgeInsets.all(5),
-                          height: 80,
-                          child: Icon(
-                            Icons.location_on,
-                            size: 40,
+                        new Container(
+                          child: new RaisedButton(
                             color: Colors.blue,
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onPressed: () {
+                              //code to call the function to submit data
+                            },
                           ),
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.business,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "Kennady chacko charitable trust",
-                            style: TextStyle(color: Colors.blue),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.supervised_user_circle,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "Kennady chacko (founder)",
-                            style: TextStyle(color: Colors.blue),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.payment,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "7465 xxxx xxxx 9687",
-                            style: TextStyle(color: Colors.blue),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.mail,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "kennadychacko@gmail.com",
-                            style: TextStyle(color: Colors.blue),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.phone_android,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "7894363625",
-                            style: TextStyle(color: Colors.blue),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.business_center,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "Established in 2005",
-                            style: TextStyle(color: Colors.blue),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              )),
-          Container(
-              height: 350,
-              padding: EdgeInsets.all(5),
-              width: MediaQuery.of(context).size.width,
-              child: Card(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          margin: EdgeInsets.all(5),
-                          height: 80,
-                          child: Image.asset("assets/images/ngo.png"),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          margin: EdgeInsets.all(5),
-                          height: 80,
-                          child: Icon(
-                            Icons.location_on,
-                            size: 40,
-                            color: Colors.blue,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.business,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "Mary charitable trust",
-                            style: TextStyle(color: Colors.blue),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.supervised_user_circle,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "Robbin (founder)",
-                            style: TextStyle(color: Colors.blue),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.payment,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "8465 xxxx xxxx 4896",
-                            style: TextStyle(color: Colors.blue),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.mail,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "robbin@gmail.com",
-                            style: TextStyle(color: Colors.blue),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.phone_android,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "7553196874",
-                            style: TextStyle(color: Colors.blue),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.business_center,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "Established in 2015",
-                            style: TextStyle(color: Colors.blue),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              )),
-        ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
