@@ -18,12 +18,12 @@ class _ContractsState extends State<Contracts> {
     // TODO: implement initState
     super.initState();
     httpClient = new Client();
-    ethClient = new Web3Client("http://10.0.2.2:7545", httpClient);
+    ethClient = new Web3Client("http://192.168.0.106:7545", httpClient);
   }
 
   Future<DeployedContract> loadContract() async {
     String abiCode = await rootBundle.loadString("assets/json/abi.json");
-    String contractAddress = "0x8532C285CcC10a96d1a06e1335cf83b5a5d7678B";
+    String contractAddress = "0x859eA3f17DC8eF161b71861dA0f85EBa6e5D2BB1";
 
     final contract = DeployedContract(ContractAbi.fromJson(abiCode, "MetaCoin"),
         EthereumAddress.fromHex(contractAddress));
@@ -32,7 +32,7 @@ class _ContractsState extends State<Contracts> {
 
   Future<String> submit(String functionName, List<dynamic> args) async {
     EthPrivateKey credentials = EthPrivateKey.fromHex(
-        "b01e4cb5d59797d08b040d98e03d091655ad2513b96ddaad5e144f2d93827006");
+        "e13ac636e5977eee0d411f13d77748fdc29b36610ed3fb1e1dcf10751ef0b49e");
 
     DeployedContract contract = await loadContract();
 
@@ -83,7 +83,7 @@ class _ContractsState extends State<Contracts> {
             color: Colors.red,
             height: 100,
             child: FutureBuilder(
-              future: getBalance("0x6E8CdB55CDE9c7C034e5bE5180E0089e5B79baFA"),
+              future: getBalance("0x49991777d9Db8f17aa23f7f342EcF6D912E2924B"),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return Text(
@@ -97,7 +97,7 @@ class _ContractsState extends State<Contracts> {
             child: Text("Send some MetaCoins"),
             onPressed: () async {
               var result = await sendCoind(
-                  "0x6E8CdB55CDE9c7C034e5bE5180E0089e5B79baFA", 2);
+                  "0xf6760858040Ac75F88737Eb026B900832948181b", 2);
               setState(() {
                 lastTransactionHash = result;
               });
