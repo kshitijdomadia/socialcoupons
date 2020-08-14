@@ -30,7 +30,7 @@ class _NGOState extends State<NGO> {
 // function to cancel the data submitted
 
   cancel() {
-    print('The data is submitted');
+    print('Data Submission Cancelled');
   }
 
   @override
