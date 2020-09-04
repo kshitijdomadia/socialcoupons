@@ -14,14 +14,14 @@ class _NGOState extends State<NGO> {
 
   //variables for the NGO form
 
-  String registration_deed_no = " ";
-  String name_of_ngo = " ";
-  String founder = " ";
-  String pannumber = " ";
-  String email = " ";
-  String contact = " ";
-  String location = " ";
-  String yearofestablishment = " ";
+  String registration_deed_no;
+  String name_of_ngo;
+  String founder;
+  String pannumber;
+  String email;
+  String contact;
+  String location;
+  String yearofestablishment;
 
 // function for adding NGO data called from the submit button
 
