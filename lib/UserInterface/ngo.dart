@@ -34,7 +34,30 @@ class _NGOState extends State<NGO> {
 // function for adding NGO data called from the submit button
 
   Future sendData() async {
-    print('The data is submitted');
+    try {
+      var body = jsonEncode({
+        'Registration Deed No': regCon.text,
+        'Name of NGO': nameCon.text,
+        'Founder Name': founderCon.text,
+        'Pan Number': panCon.text,
+        'Email': emailCon.text,
+        'Contact': contactCon.text,
+        'Location': locationCon.text,
+        'Year of Establishment': yoeCon.text
+      });
+      final FormData formData = FormData.fromMap({"file": body});
+      const JsonCodec json = JsonCodec();
+      final response = await Dio().post(
+          'https://ipfs.infura.io:5001/api/v0/add?pin=false',
+          data: formData);
+      var data = response.toString();
+      var decodedJson = json.decode(data);
+
+      print(decodedJson);
+      print('The data is submitted');
+    } catch (e) {
+      print(e);
+    }
   }
 
 // function to cancel the data submitted
@@ -206,9 +229,7 @@ class _NGOState extends State<NGO> {
                               'Submit',
                               style: TextStyle(color: Colors.white),
                             ),
-                            onPressed: () {
-                              //code to call the function to submit data
-                            },
+                            onPressed: sendData,
                           ),
                         ),
                       ],
