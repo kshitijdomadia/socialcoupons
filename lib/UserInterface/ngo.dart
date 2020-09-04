@@ -22,10 +22,18 @@ class _NGOState extends State<NGO> {
   String contact;
   String location;
   String yearofestablishment;
+  static final regCon = new TextEditingController();
+  static final nameCon = new TextEditingController();
+  static final founderCon = new TextEditingController();
+  static final panCon = new TextEditingController();
+  static final emailCon = new TextEditingController();
+  static final contactCon = new TextEditingController();
+  static final locationCon = new TextEditingController();
+  static final yoeCon = new TextEditingController();
 
 // function for adding NGO data called from the submit button
 
-  sendData() {
+  Future sendData() async {
     print('The data is submitted');
   }
 
@@ -63,6 +71,7 @@ class _NGOState extends State<NGO> {
                     ),
                   ),
                   TextFormField(
+                    controller: regCon,
                     decoration: InputDecoration(
                       icon: const Icon(Icons.note),
                       hintText: 'Enter registration deed number',
@@ -76,6 +85,7 @@ class _NGOState extends State<NGO> {
                     },
                   ),
                   TextFormField(
+                    controller: nameCon,
                     decoration: InputDecoration(
                       icon: const Icon(Icons.business),
                       hintText: 'Enter the name of NGO',
@@ -88,6 +98,7 @@ class _NGOState extends State<NGO> {
                     },
                   ),
                   TextFormField(
+                    controller: founderCon,
                     decoration: InputDecoration(
                       icon: const Icon(Icons.person),
                       hintText: 'Enter founder name',
@@ -100,6 +111,7 @@ class _NGOState extends State<NGO> {
                     },
                   ),
                   TextFormField(
+                    controller: panCon,
                     decoration: InputDecoration(
                       icon: const Icon(Icons.payment),
                       hintText: 'Enter your pan number',
@@ -112,6 +124,7 @@ class _NGOState extends State<NGO> {
                     },
                   ),
                   TextFormField(
+                    controller: emailCon,
                     decoration: InputDecoration(
                       icon: const Icon(Icons.email),
                       hintText: 'Enter your email id',
@@ -124,6 +137,7 @@ class _NGOState extends State<NGO> {
                     },
                   ),
                   TextFormField(
+                    controller: contactCon,
                     decoration: const InputDecoration(
                       icon: const Icon(Icons.phone),
                       hintText: 'Enter your phone number',
@@ -137,6 +151,7 @@ class _NGOState extends State<NGO> {
                     },
                   ),
                   TextFormField(
+                    controller: locationCon,
                     decoration: const InputDecoration(
                       icon: const Icon(Icons.location_on),
                       hintText: 'Enter your location',
@@ -150,6 +165,7 @@ class _NGOState extends State<NGO> {
                     },
                   ),
                   TextFormField(
+                    controller: yoeCon,
                     decoration: const InputDecoration(
                       icon: const Icon(Icons.calendar_today),
                       hintText: 'Enter your year of establishment',
